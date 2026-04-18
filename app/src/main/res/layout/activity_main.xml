@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚡ StrobeRPM"
+            android:textSize="28sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Measure fan speed with your flashlight"
+            android:textSize="13sp"
+            android:textColor="#AAAAAA"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Frequency display -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STROBE FREQUENCY"
+                    android:textSize="11sp"
+                    android:textColor="#888888"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:id="@+id/tvFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.0 Hz"
+                    android:textSize="52sp"
+                    android:textColor="#FFD600"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <!-- Seek bar -->
+                <SeekBar
+                    android:id="@+id/seekBarFrequency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:thumbTint="#FFD600"
+                    android:progressTint="#FFD600"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp">
+
+                    <Button
+                        android:id="@+id/btnSlower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="− Slower"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#333333"
+                        android:layout_marginEnd="12dp"/>
+
+                    <Button
+                        android:id="@+id/btnFaster"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="+ Faster"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#333333"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.5 Hz ← drag slider → 25 Hz"
+                    android:textSize="11sp"
+                    android:textColor="#555555"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- RPM display -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <!-- Direct RPM -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="IF 1-BLADE"
+                            android:textSize="10sp"
+                            android:textColor="#888888"
+                            android:letterSpacing="0.1"/>
+
+                        <TextView
+                            android:id="@+id/tvRpmDirect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="60 RPM"
+                            android:textSize="28sp"
+                            android:textColor="#4FC3F7"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="60dp"
+                        android:background="#333333"/>
+
+                    <!-- True RPM with blades -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="WITH BLADES"
+                            android:textSize="10sp"
+                            android:textColor="#888888"
+                            android:letterSpacing="0.1"/>
+
+                        <TextView
+                            android:id="@+id/tvRpmTrue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="180 RPM"
+                            android:textSize="28sp"
+                            android:textColor="#A5D6A7"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Blade count -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#1E1E1E"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NUMBER OF FAN BLADES"
+                    android:textSize="11sp"
+                    android:textColor="#888888"
+                    android:letterSpacing="0.15"
+                    android:layout_marginBottom="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <Button
+                        android:id="@+id/btnBladesMinus"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:text="−"
+                        android:textSize="24sp"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#333333"/>
+
+                    <TextView
+                        android:id="@+id/tvBlades"
+                        android:layout_width="72dp"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:textSize="40sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                    <Button
+                        android:id="@+id/btnBladesPlus"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:text="+"
+                        android:textSize="24sp"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#333333"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvAliasNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12sp"
+                    android:textColor="#FF8A65"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Start/Stop button -->
+        <Button
+            android:id="@+id/btnStartStop"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:text="▶ START STROBE"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#2E7D32"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Instructions -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#1A1A2E"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📖 How to use"
+                    android:textSize="14sp"
+                    android:textColor="#CE93D8"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1. Set your fan blade count\n2. Press START STROBE\n3. Point phone flashlight at the spinning fan in a dark room\n4. Adjust frequency until the blades appear FROZEN\n5. Read the RPM value\n\n⚠️ Aliasing: A fan with N blades also freezes at 1/N of the true frequency. Always check multiples!"
+                    android:textSize="13sp"
+                    android:textColor="#BBBBBB"
+                    android:lineSpacingExtra="4dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>
